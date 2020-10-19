@@ -33,9 +33,13 @@ pipelines:
                       - "test"
   "deploy-pipeline": # definition of yaml-example pipeline
     group: deploy-group
-    label_template: "${mygit[:8]}"
+    label_template: "${gocd-test-master[:8]}"
     locking: off
     materials:
+      materials:
+        "gocd-test-master":
+          git: https://github.com/alexIzual/gocd-test.git
+          branch: master
       upstream:
         # type is optional here, material type is implied based on presence of pipeline and stage fields
         # type: dependency
