@@ -1,25 +1,25 @@
 environments:
-  dev:
+  example:
     environment_variables:
       EXAMPLE_DEPLOYMENT: testing
     pipelines:
-      - mid-pipe
+      - midpipeline
 pipelines:
-  "dev-pipe":
+  devpipeline:
     group: dev-group
     materials:
-      mygit: # имя материала
-        # название материала и параметры
+      mygit:  # this is the name of material
+        # says about type of material and url at once
         git: https://github.com/alexIzual/gocd-test.git
     stages:
-      - dev: # name of stage
+      - build: # name of stage
           jobs:
             build: # name of the job
               tasks:
-                - exec: # indicates type of task
-                    command: dotnet
-                    arguments: build
-  "mid-pipe": # definition of mid-pipe pipeline
+               - exec: # indicates type of task
+                   command: build
+                   arguments: build
+  midpipeline: # definition of yaml-example pipeline
     group: mid-group
     label_template: "${mygit[:8]}"
     locking: off
@@ -27,36 +27,36 @@ pipelines:
       mygit: # this is the name of material
         # keyword git says about type of material and url at once
         git: https://github.com/alexIzual/gocd-test.git
-        branch: ci
+        branch: master
       upstream:
         # type is optional here, material type is implied based on presence of pipeline and stage fields
         # type: dependency
-        pipeline: dev-pipe
-        stage: dev
+        pipeline: devpipeline
+        stage: build
     stages: # list of stages in order
       - build: # name of stage
           clean_workspace: true
           jobs:
             csharp: # name of the job
               resources:
-                - net45
+               - net45
               artifacts:
-                - build:
-                    source: bin/
-                    destination: build
-                - test:
-                    source: tests/
-                    destination: test-reports/
+               - build:
+                   source: bin/
+                   destination: build
+               - test:
+                   source: tests/
+                   destination: test-reports/
               tabs:
                 report: test-reports/index.html
               tasks: # ordered list of tasks to execute in job csharp
-                - fetch:
-                    pipeline: dev-pipe
-                    stage: build
-                    job: build
-                    source: test-bin/
-                    destination: bin/
-                - exec: # indicates type of task
-                    command: make
-                    arguments:
-                      - "VERBOSE=true"
+               - fetch:
+                   pipeline: devpipeline
+                   stage: build
+                   job: build
+                   source: test-bin/
+                   destination: bin/
+               - exec: # indicates type of task
+                   command: make
+                   arguments:
+                    - "VERBOSE=true"
