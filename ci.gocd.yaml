@@ -16,18 +16,18 @@ pipelines:
           jobs:
             build: # name of the job
               tasks:
-                - fetch:
-                  source: Microservice.Second/
+                # - fetch:
+                #   source: Microservice.Second/
                 - exec: # indicates type of task
                     command: dotnet
                     arguments: build
-            test:
-              tasks:
-                - fetch:
-                  source: Microservice.Second/
-                - exec:
-                  command: dotnet
-                  arguments: test
+            # test:
+            #   tasks:
+            #     - fetch:
+            #       source: Microservice.Second/
+            #     - exec:
+            #       command: dotnet
+            #       arguments: test
   "mid-pipe": # definition of mid-pipe pipeline
     group: mid-group
     label_template: "${mygit[:8]}"
