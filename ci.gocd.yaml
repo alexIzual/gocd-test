@@ -19,11 +19,6 @@ pipelines:
                - exec: # indicates type of task
                    command: dotnet 
                    arguments: build
-            test:
-              tasks:
-                - exec:
-                  command: dotnet
-                  arguments: test
   "mid-pipe": # definition of mid-pipe pipeline
     group: mid-group
     label_template: "${mygit[:8]}"
