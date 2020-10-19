@@ -23,10 +23,13 @@ pipelines:
                     working_directory: Microservice.Second/
                     arguments:
                       - "build"
+      - unit_tests:
+          jobs:
             unit_tests:
               tasks:
                 - exec:
                     command: dotnet
+                    working_directory: Microservice.Second/
                     arguments:
                       - "test"
   midpipeline: # definition of yaml-example pipeline
