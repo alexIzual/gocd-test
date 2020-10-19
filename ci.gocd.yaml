@@ -18,12 +18,18 @@ pipelines:
           jobs:
             build: # name of the job
               tasks:
+                - fetch:
+                  source: Microservice.Second/
+                  destination: bin/
                 - exec: # indicates type of task
                     command: dotnet
                     arguments:
                       - "build"
             unit_tests:
               tasks:
+                - fetch:
+                  source: Microservice.Second/
+                  destination: bin_test/
                 - exec:
                     command: dotnet
                     arguments:
