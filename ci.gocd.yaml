@@ -20,8 +20,14 @@ pipelines:
               tasks:
                 - exec: # indicates type of task
                     command: dotnet
-                    arguments: 
+                    arguments:
                       - "build"
+            unit_tests:
+              tasks:
+                - exec:
+                    command: dotnet
+                    arguments:
+                      - "test"
   midpipeline: # definition of yaml-example pipeline
     group: mid-group
     label_template: "${mygit[:8]}"
