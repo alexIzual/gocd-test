@@ -16,33 +16,15 @@ pipelines:
     stages:
       - build: # name of stage
           jobs:
-            artifacts:
-              - build:
-                  source: bin/
-                  destination: build
-              - test:
-                  source: tests/
-                  destination: test-reports/
             build: # name of the job
               tasks:
-                - fetch:
-                    pipeline: devpipeline
-                    stage: build
-                    job: build
-                    source: Microservice.Second/
-                    destination: bin/
                 - exec: # indicates type of task
                     command: dotnet
+                    working_dir: Microservice.Second/
                     arguments:
                       - "build"
             unit_tests:
               tasks:
-                - fetch:
-                    pipeline: devpipeline
-                    stage: build
-                    job: build
-                    source: Microservice.Second/
-                    destination: bin_test/
                 - exec:
                     command: dotnet
                     arguments:
