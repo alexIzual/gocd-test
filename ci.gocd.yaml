@@ -1,12 +1,12 @@
 environments:
-  example:
+  dev:
     environment_variables:
       EXAMPLE_DEPLOYMENT: testing
     pipelines:
-      - yaml-example
+      - mid-pipe
 pipelines:
-  yamlpipe1:
-    group: simple
+  "dev-pipe":
+    group: dev-group
     materials:
       mygit:  # this is the name of material
         # says about type of material and url at once
@@ -18,8 +18,8 @@ pipelines:
               tasks:
                - exec: # indicates type of task
                    command: make
-  "yaml-example": # definition of yaml-example pipeline
-    group: yaml-example
+  "mid-pipe": # definition of mid-pipe pipeline
+    group: mid-group
     label_template: "${mygit[:8]}"
     locking: off
     materials:
@@ -30,7 +30,7 @@ pipelines:
       upstream:
         # type is optional here, material type is implied based on presence of pipeline and stage fields
         # type: dependency
-        pipeline: yamlpipe1
+        pipeline: dev-pipe
         stage: build
     stages: # list of stages in order
       - build: # name of stage
@@ -50,7 +50,7 @@ pipelines:
                 report: test-reports/index.html
               tasks: # ordered list of tasks to execute in job csharp
                - fetch:
-                   pipeline: yamlpipe1
+                   pipeline: dev-pipe
                    stage: build
                    job: build
                    source: test-bin/
