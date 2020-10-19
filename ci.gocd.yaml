@@ -62,7 +62,7 @@ pipelines:
                 report: test-reports/index.html
               tasks: # ordered list of tasks to execute in job csharp
                 - fetch:
-                    pipeline: devpipeline
+                    pipeline: build-pipeline
                     stage: build
                     job: build
                     source: test-bin/
