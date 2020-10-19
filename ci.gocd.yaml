@@ -31,7 +31,7 @@ pipelines:
                     working_directory: Microservice.Second/
                     arguments:
                       - "test"
-  midpipeline: # definition of yaml-example pipeline
+  "deploy-pipeline": # definition of yaml-example pipeline
     group: deploy-group
     label_template: "${mygit[:8]}"
     locking: off
