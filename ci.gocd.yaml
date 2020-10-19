@@ -14,13 +14,13 @@ pipelines:
         git: https://github.com/alexIzual/gocd-test.git
         branch: master
     stages:
-      - build: # name of stage
+      - dev: # name of stage
           jobs:
             build: # name of the job
               tasks:
                 - fetch:
-                  source: Microservice.Second/
-                  destination: bin/
+                    source: Microservice.Second/
+                    destination: bin/
                 - exec: # indicates type of task
                     command: dotnet
                     arguments:
@@ -28,8 +28,8 @@ pipelines:
             unit_tests:
               tasks:
                 - fetch:
-                  source: Microservice.Second/
-                  destination: bin_test/
+                    source: Microservice.Second/
+                    destination: bin_test/
                 - exec:
                     command: dotnet
                     arguments:
@@ -47,7 +47,7 @@ pipelines:
         # type is optional here, material type is implied based on presence of pipeline and stage fields
         # type: dependency
         pipeline: devpipeline
-        stage: build
+        stage: dev
     stages: # list of stages in order
       - build: # name of stage
           clean_workspace: true
