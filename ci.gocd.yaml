@@ -36,10 +36,9 @@ pipelines:
     label_template: "${mygit[:8]}"
     locking: off
     materials:
-      materials:
-        mygit:
-          git: https://github.com/alexIzual/gocd-test.git
-          branch: master
+      mygit:
+        git: https://github.com/alexIzual/gocd-test.git
+        branch: master
       upstream:
         # type is optional here, material type is implied based on presence of pipeline and stage fields
         # type: dependency
