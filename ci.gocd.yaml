@@ -8,7 +8,7 @@ pipelines:
   "dev-pipe":
     group: dev-group
     materials:
-      mygit:  # имя материала
+      mygit: # имя материала
         # название материала и параметры
         git: https://github.com/alexIzual/gocd-test.git
     stages:
@@ -16,9 +16,9 @@ pipelines:
           jobs:
             build: # name of the job
               tasks:
-               - exec: # indicates type of task
-                   command: dotnet
-                   arguments: build
+                - exec: # indicates type of task
+                    command: dotnet
+                    arguments: build
   "mid-pipe": # definition of mid-pipe pipeline
     group: mid-group
     label_template: "${mygit[:8]}"
@@ -39,24 +39,24 @@ pipelines:
           jobs:
             csharp: # name of the job
               resources:
-               - net45
+                - net45
               artifacts:
-               - build:
-                   source: bin/
-                   destination: build
-               - test:
-                   source: tests/
-                   destination: test-reports/
+                - build:
+                    source: bin/
+                    destination: build
+                - test:
+                    source: tests/
+                    destination: test-reports/
               tabs:
                 report: test-reports/index.html
               tasks: # ordered list of tasks to execute in job csharp
-               - fetch:
-                   pipeline: dev-pipe
-                   stage: build
-                   job: build
-                   source: test-bin/
-                   destination: bin/
-               - exec: # indicates type of task
-                   command: make
-                   arguments:
-                    - "VERBOSE=true"
+                - fetch:
+                    pipeline: dev-pipe
+                    stage: build
+                    job: build
+                    source: test-bin/
+                    destination: bin/
+                - exec: # indicates type of task
+                    command: make
+                    arguments:
+                      - "VERBOSE=true"
