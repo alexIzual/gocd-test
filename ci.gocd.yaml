@@ -8,16 +8,26 @@ pipelines:
   "dev-pipe":
     group: dev-group
     materials:
-      mygit:  # this is the name of material
-        # says about type of material and url at once
+      mygit: # имя материала
+        # название материала и параметры
         git: https://github.com/alexIzual/gocd-test.git
     stages:
-      - build: # name of stage
+      - dev: # name of stage
           jobs:
             build: # name of the job
               tasks:
-               - exec: # indicates type of task
-                   command: make
+                - fetch:
+                  source: Microservice.Second/
+                - exec: # indicates type of task
+                    command: dotnet
+                    arguments: build
+            test:
+              tasks:
+                - fetch:
+                  source: Microservice.Second/
+                - exec:
+                  command: dotnet
+                  arguments: test
   "mid-pipe": # definition of mid-pipe pipeline
     group: mid-group
     label_template: "${mygit[:8]}"
@@ -31,31 +41,31 @@ pipelines:
         # type is optional here, material type is implied based on presence of pipeline and stage fields
         # type: dependency
         pipeline: dev-pipe
-        stage: build
+        stage: dev
     stages: # list of stages in order
       - build: # name of stage
           clean_workspace: true
           jobs:
             csharp: # name of the job
               resources:
-               - net45
+                - net45
               artifacts:
-               - build:
-                   source: bin/
-                   destination: build
-               - test:
-                   source: tests/
-                   destination: test-reports/
+                - build:
+                    source: bin/
+                    destination: build
+                - test:
+                    source: tests/
+                    destination: test-reports/
               tabs:
                 report: test-reports/index.html
               tasks: # ordered list of tasks to execute in job csharp
-               - fetch:
-                   pipeline: dev-pipe
-                   stage: build
-                   job: build
-                   source: test-bin/
-                   destination: bin/
-               - exec: # indicates type of task
-                   command: make
-                   arguments:
-                    - "VERBOSE=true"
+                - fetch:
+                    pipeline: dev-pipe
+                    stage: build
+                    job: build
+                    source: test-bin/
+                    destination: bin/
+                - exec: # indicates type of task
+                    command: make
+                    arguments:
+                      - "VERBOSE=true"
