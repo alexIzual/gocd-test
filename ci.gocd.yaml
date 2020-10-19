@@ -19,8 +19,9 @@ pipelines:
             build: # name of the job
               tasks:
                 - exec: # indicates type of task
-                    command: build
-                    arguments: build
+                    command: dotnet
+                    arguments: 
+                      - "build"
   midpipeline: # definition of yaml-example pipeline
     group: mid-group
     label_template: "${mygit[:8]}"
