@@ -14,11 +14,14 @@ pipelines:
         git: https://github.com/alexIzual/gocd-test.git
         branch: master
     stages:
-      - dev: # name of stage
+      - build: # name of stage
           jobs:
             build: # name of the job
               tasks:
                 - fetch:
+                    pipeline: devpipeline
+                    stage: build
+                    job: build
                     source: Microservice.Second/
                     destination: bin/
                 - exec: # indicates type of task
@@ -28,6 +31,9 @@ pipelines:
             unit_tests:
               tasks:
                 - fetch:
+                    pipeline: devpipeline
+                    stage: build
+                    job: build
                     source: Microservice.Second/
                     destination: bin_test/
                 - exec:
