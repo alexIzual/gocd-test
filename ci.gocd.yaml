@@ -3,8 +3,8 @@ environments:
     environment_variables:
       EXAMPLE_DEPLOYMENT: testing
     pipelines:
-      - midpipeline
-      - devpipeline
+      - deploy-pipeline
+      - build-pipeline
 pipelines:
   "build-pipeline":
     group: build-group
