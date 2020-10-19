@@ -16,6 +16,13 @@ pipelines:
     stages:
       - build: # name of stage
           jobs:
+            artifacts:
+              - build:
+                  source: bin/
+                  destination: build
+              - test:
+                  source: tests/
+                  destination: test-reports/
             build: # name of the job
               tasks:
                 - fetch:
