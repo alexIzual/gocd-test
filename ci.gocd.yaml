@@ -6,11 +6,10 @@ environments:
       - midpipeline
       - devpipeline
 pipelines:
-  devpipeline:
-    group: dev-group
+  "build-pipeline":
+    group: build-group
     materials:
-      mygit: # this is the name of material
-        # says about type of material and url at once
+      "gocd-test-master":
         git: https://github.com/alexIzual/gocd-test.git
         branch: master
     stages:
@@ -33,19 +32,15 @@ pipelines:
                     arguments:
                       - "test"
   midpipeline: # definition of yaml-example pipeline
-    group: mid-group
+    group: deploy-group
     label_template: "${mygit[:8]}"
     locking: off
     materials:
-      mygit: # this is the name of material
-        # keyword git says about type of material and url at once
-        git: https://github.com/alexIzual/gocd-test.git
-        branch: master
       upstream:
         # type is optional here, material type is implied based on presence of pipeline and stage fields
         # type: dependency
-        pipeline: devpipeline
-        stage: build
+        pipeline: build-pipeline
+        stage: unit_tests
     stages: # list of stages in order
       - build: # name of stage
           clean_workspace: true
