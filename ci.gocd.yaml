@@ -33,11 +33,11 @@ pipelines:
                       - "test"
   "deploy-pipeline": # definition of yaml-example pipeline
     group: deploy-group
-    label_template: "${gocd-test-master[:8]}"
+    label_template: "${mygit[:8]}"
     locking: off
     materials:
       materials:
-        "gocd-test-master":
+        mygit:
           git: https://github.com/alexIzual/gocd-test.git
           branch: master
       upstream:
