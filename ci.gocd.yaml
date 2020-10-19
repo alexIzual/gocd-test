@@ -20,7 +20,7 @@ pipelines:
               tasks:
                 - exec: # indicates type of task
                     command: dotnet
-                    working_dir: Microservice.Second/
+                    working_directory: Microservice.Second/
                     arguments:
                       - "build"
             unit_tests:
