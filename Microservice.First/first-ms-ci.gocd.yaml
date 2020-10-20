@@ -48,11 +48,12 @@ pipelines:
         stage: build
     stages:
       - build:
-          clean_workspace: true
+          clean_workspace: false
           jobs:
             publish:
               tasks:
                 - exec:
                     command: dotnet
+                    working_directory: Microservice.First/
                     arguments:
                       - "publish -c Release"
