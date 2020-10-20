@@ -41,7 +41,7 @@ pipelines:
         branch: master
       upstream:
         pipeline: build-pipeline-f1
-        stage: unit_tests
+        stage: build
     stages:
       - build:
           clean_workspace: true
