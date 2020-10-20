@@ -36,7 +36,7 @@ pipelines:
                     arguments:
                       - test
                       - -v
-                      - normal
+                      - m
   deploy-pipeline-s2:
     group: deploy-group
     label_template: "${mygit[:8]}"
@@ -52,8 +52,6 @@ pipelines:
         stage: unit_tests
     stages:
       - build:
-          approval: manual
-          clean_workspace: true
           jobs:
             csharp:
               tasks:

@@ -48,7 +48,8 @@ pipelines:
         stage: build
     stages:
       - build:
-          clean_workspace: false
+          approval: manual
+          clean_workspace: true
           jobs:
             publish:
               tasks:
