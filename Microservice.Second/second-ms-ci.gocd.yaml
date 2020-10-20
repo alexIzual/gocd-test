@@ -60,4 +60,6 @@ pipelines:
                 - exec:
                     command: dotnet
                     arguments:
-                      - publish -c Release
+                      - publish
+                      - -c
+                      - Release
