@@ -1,8 +1,8 @@
-using NUnit.Framework;
+﻿using NUnit.Framework;
 
 namespace Microservice.Second.UnitTests
 {
-    public class DammyTest
+    public class DummyTest2
     {
         [SetUp]
         public void Setup()
