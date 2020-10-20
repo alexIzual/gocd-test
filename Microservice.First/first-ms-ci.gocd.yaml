@@ -19,16 +19,18 @@ pipelines:
               tasks:
                 - exec:
                     command: dotnet
+                    working_directory: Microservice.First/
                     arguments:
                       - "build"
-      - unit_tests:
-          jobs:
-            unit_tests:
-              tasks:
-                - exec:
-                    command: dotnet
-                    arguments:
-                      - "test --verbosity d"
+      # - unit_tests:
+      #     jobs:
+      #       unit_tests:
+      #         tasks:
+      #           - exec:
+      #               command: dotnet
+      #               working_directory: Microservice.First/
+      #               arguments:
+      #                 - "test --verbosity d"
   deploy-pipeline-f1:
     group: deploy-group
     label_template: "${mygit[:8]}"
