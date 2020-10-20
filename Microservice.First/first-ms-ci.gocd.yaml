@@ -19,7 +19,6 @@ pipelines:
               tasks:
                 - exec:
                     command: dotnet
-                    working_directory: Microservice.Second/
                     arguments:
                       - "build"
       - unit_tests:
@@ -28,7 +27,6 @@ pipelines:
               tasks:
                 - exec:
                     command: dotnet
-                    working_directory: Microservice.Second/
                     arguments:
                       - "test --verbosity d"
   deploy-pipeline-f1:
