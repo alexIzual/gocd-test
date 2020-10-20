@@ -25,7 +25,7 @@ pipelines:
                     working_directory: Microservice.Second/
                     command: dotnet
                     arguments:
-                      - "build"
+                      - build
       - unit_tests:
           jobs:
             unit_tests:
@@ -34,7 +34,7 @@ pipelines:
                     working_directory: Microservice.Second/
                     command: dotnet
                     arguments:
-                      - test -v normal
+                      - test
   deploy-pipeline-s2:
     group: deploy-group
     label_template: "${mygit[:8]}"
