@@ -34,7 +34,8 @@ pipelines:
                     command: dotnet
                     working_directory: Microservice.Second/
                     arguments:
-                      - "test --verbosity d"
+                      - "test"
+                      - "-v d"
   deploy-pipeline-s2:
     group: deploy-group
     label_template: "${mygit[:8]}"
@@ -58,4 +59,5 @@ pipelines:
                 - exec:
                     command: dotnet
                     arguments:
-                      - "publish -c Release"
+                      - "publish"
+                      - "-c Release"
