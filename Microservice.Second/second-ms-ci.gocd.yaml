@@ -30,8 +30,9 @@ pipelines:
           jobs:
             unit_tests:
               tasks:
+                - script: dotnet test -v normal
                 - exec:
-                    working_directory: Microservice.Second.UnitTests/
+                    working_directory: Microservice.Second/
                     command: dotnet
                     arguments:
                       - "test -v normal"
