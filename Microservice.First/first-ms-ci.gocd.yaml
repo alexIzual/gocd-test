@@ -4,10 +4,10 @@ environments:
     environment_variables:
       EXAMPLE_DEPLOYMENT: testing
     pipelines:
-      - deploy-pipeline
-      - build-pipeline
+      - deploy-pipeline-f1
+      - build-pipeline-f1
 pipelines:
-  "build-pipeline":
+  build-pipeline-f1:
     group: build-group
     label_template: "${mygit[:8]}"
     materials:
@@ -33,7 +33,7 @@ pipelines:
                     working_directory: Microservice.Second/
                     arguments:
                       - "test --verbosity d"
-  "deploy-pipeline":
+  deploy-pipeline-f1:
     group: deploy-group
     label_template: "${mygit[:8]}"
     locking: off
@@ -42,7 +42,7 @@ pipelines:
         git: https://github.com/alexIzual/gocd-test.git
         branch: master
       upstream:
-        pipeline: build-pipeline
+        pipeline: build-pipeline-f1
         stage: unit_tests
     stages:
       - build:
