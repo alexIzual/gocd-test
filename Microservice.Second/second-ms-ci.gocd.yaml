@@ -58,6 +58,7 @@ pipelines:
             csharp:
               tasks:
                 - exec:
+                    working_directory: Microservice.Second/
                     command: dotnet
                     arguments:
                       - publish
