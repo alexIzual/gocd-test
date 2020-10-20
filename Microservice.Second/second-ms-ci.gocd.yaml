@@ -14,8 +14,8 @@ pipelines:
       mygit:
         git: https://github.com/alexIzual/gocd-test.git
         branch: master
-        blacklist:
-          - Microservice.First/**/*.*
+        whitelist:
+          - Microservice.Second/**/*.*
     stages:
       - build:
           jobs:
@@ -43,8 +43,8 @@ pipelines:
       mygit:
         git: https://github.com/alexIzual/gocd-test.git
         branch: master
-        blacklist:
-          - Microservice.First/**/*.*
+        whitelist:
+          - Microservice.Second/**/*.*
       upstream:
         pipeline: build-pipeline-s2
         stage: unit_tests
