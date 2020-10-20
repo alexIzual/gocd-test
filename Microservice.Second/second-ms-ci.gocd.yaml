@@ -35,6 +35,8 @@ pipelines:
                     command: dotnet
                     arguments:
                       - test
+                      - -v
+                      - normal
   deploy-pipeline-s2:
     group: deploy-group
     label_template: "${mygit[:8]}"
