@@ -1,8 +1,6 @@
 format_version: 10
 environments:
   dev_env:
-    environment_variables:
-      EXAMPLE_DEPLOYMENT: testing
     pipelines:
       - deploy-pipeline-f1
       - build-pipeline-f1
