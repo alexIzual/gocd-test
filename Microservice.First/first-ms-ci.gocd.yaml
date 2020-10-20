@@ -12,6 +12,8 @@ pipelines:
       mygit:
         git: https://github.com/alexIzual/gocd-test.git
         branch: master
+        blacklist:
+          - Microservice.Second/**/*.*
     stages:
       - build:
           jobs:
@@ -39,6 +41,8 @@ pipelines:
       mygit:
         git: https://github.com/alexIzual/gocd-test.git
         branch: master
+        blacklist:
+          - Microservice.Second/**/*.*
       upstream:
         pipeline: build-pipeline-f1
         stage: build
@@ -46,7 +50,7 @@ pipelines:
       - build:
           clean_workspace: true
           jobs:
-            csharp:
+            publish:
               tasks:
                 - exec:
                     command: dotnet
