@@ -10,7 +10,7 @@ namespace Microservice.Second.Comtrollers
         [Route("healthcheck")]
         public IActionResult HealthCheck()
         {
-            return Ok();
+            return Ok(new { status = "Second - OK" });
         }
     }
 }
